@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #F5FFFA;
+            color: #000;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        header {
+            background-color: #188754;
+
+            color: #fff;
+            padding: 10px 0;
+
+            width: 100%;
+            position: fixed;
+
+            top: 0;
+            z-index: 100;
+
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 960px;
+
+            margin: 20px auto;
+
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 410px;
+
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            color: #000;
+            background-color: #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            ;
+        }
+
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+
+        }
+
+        .profile-container {
+            width: 935px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 0 6px 8px rgba(86, 86, 86, 0.5);
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+
+        .profile-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+            background-color: #188754;
+            border-radius: 30px;
+            padding: 15px 15px 15px;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin-right: 20px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-image input[type="file"] {
+            display: none;
+        }
+
+        .profile-image .photo-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-weight: 500;
+        }
+
+        .profile-info {
+
+            flex-grow: 1;
+        }
+
+        .profile-info input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #eee;
+            border-radius: 40px;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+            background-color: #fafafa;
+        }
+
+        .profile-info input[type="text"]:focus {
+            outline: none;
+            border-color: #ddd;
+        }
+
+
+        .profile-header .chg-btn {
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 500;
+            bottom: 0;
+
+            margin-top: 15px;
+            margin-left: 5px;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .profile-header .chg-btn:hover {
+            background-color: #0077cc;
+        }
+
+        .btn-apply {
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            width: 100px;
+        }
+
+        .btn-apply:hover {
+            background-color: #0077cc;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #262626;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            background-color: #fafafa;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #ddd;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            color: gray;
+            background-color: white;
+
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+
+            background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 30px;
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: fit-content;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content button {
+            padding: 0.7rem 1rem;
+            border: none;
+            background: none;
+            border-top: 1px solid lightgray;
+            font-size: large;
+            cursor: pointer;
+        }
+
+        .modal-content button:first-child {
+            border: none;
+        }
+
+        .modal-content button.red {
+            color: red;
+        }
+
+        .container2 {
+            background-color: #188754;
+            border-radius: 20px;
+            padding: 15px 15px 13px;
+
+        }
+
+        .container2 label {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 5px;
+        }
+
+        .container3 {
+            background-color: #188754;
+            border-radius: 20px;
+            padding: 15px 15px 13px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .container3 label {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">HealthyKita.</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Landing-Page.html">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="profile-icon">
+                <img src="asset/img/download (1).jpg" alt="Profile">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Edit profile</h1>
+        <div class="profile-header">
+            <div class="profile-image">
+                <img id="profile-preview" src="" alt="Profile Picture">
+                <span class="photo-placeholder"></span>
+                <input type="file" id="profile-image-input" accept="image/*">
+            </div>
+            <div class="profile-info">
+                <input type="text" id="username" placeholder="Nama Panggilan">
+                <input type="text" id="nama-lengkap" placeholder="Nama Lengkap">
+            </div>
+            <button id="change-photo-button" class="chg-btn">Change photo</button>
+        </div>
+
+        <div class="container2">
+            <label for="bio">Deskripsi</label>
+            <textarea id="bio" placeholder="Deskripsimu..."></textarea>
+        </div>
+
+        <div class="container3">
+            <label for="gender">Jenis Kelamin</label>
+            <select id="gender">
+                <option value="prefer">Prefer not to say</option>
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+        </div>
+
+        <button class="btn-apply">Apply</button>
+    </div>
+
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <button id="upload-photo">Upload Photo</button>
+            <button id="remove-photo" class="red">Remove Current Photo</button>
+            <button id="cancel-modal">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+
+        const imageInput = document.getElementById('profile-image-input');
+        const imagePreview = document.getElementById('profile-preview');
+        const placeholder = document.querySelector('.photo-placeholder');
+        const changePhotoButton = document.getElementById('change-photo-button');
+        const modal = document.getElementById("photoModal");
+        const uploadButton = document.getElementById("upload-photo");
+        const removeButton = document.getElementById("remove-photo");
+        const cancelButton = document.getElementById("cancel-modal");
+        const defaultProfileImage = "asset/img/download.jpeg";
+
+        function setProfileImage(imageSrc) {
+            imagePreview.src = imageSrc;
+            placeholder.style.display = imageSrc === defaultProfileImage ? 'block' : 'none';
+        }
+
+        changePhotoButton.addEventListener('click', () => {
+            modal.style.display = "flex";
+        });
+
+        uploadButton.addEventListener('click', () => {
+            imageInput.click();
+            modal.style.display = "none";
+        });
+
+        removeButton.addEventListener('click', () => {
+            setProfileImage(defaultProfileImage);
+            imageInput.value = "";
+            modal.style.display = "none";
+            localStorage.removeItem('profileImage');
+        });
+
+        cancelButton.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setProfileImage(e.target.result);
+                    localStorage.setItem('profileImage', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                const savedImage = localStorage.getItem('profileImage');
+                if (!savedImage) {
+                    setProfileImage(defaultProfileImage);
+                }
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                setProfileImage(savedImage);
+            } else {
+                setProfileImage(defaultProfileImage);
+            }
+        });
+    </script>
+</body>
+
+</html>
